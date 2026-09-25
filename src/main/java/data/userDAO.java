@@ -1,8 +1,9 @@
 package data;
 
-import entity.User;
+
+import common.data;
 
 public interface userDAO {
 
-    void saveUser(User user);
+    void saveUser(data data);
 }

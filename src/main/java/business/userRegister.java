@@ -1,6 +1,9 @@
 package business;
-import entity.User;
+
+import common.registerRequest;
+
+
 public interface userRegister{
 
-    void register(User user);
+    void register(registerRequest req);
 }
