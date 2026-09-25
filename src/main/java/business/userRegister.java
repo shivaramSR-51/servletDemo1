@@ -1,6 +1,8 @@
 package business;
-import entity.User;
+
+import presentation.rUser;
+
 public interface userRegister{
 
-    void register(User user);
+    void register(rUser ruser);
 }

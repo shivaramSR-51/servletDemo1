@@ -1,8 +1,7 @@
 package data;
 
-import entity.User;
-
+import business.bUser;
 public interface userDAO {
 
-    void saveUser(User user);
+    void saveUser(bUser buser);
 }

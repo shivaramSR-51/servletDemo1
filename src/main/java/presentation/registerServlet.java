@@ -1,7 +1,7 @@
 package presentation;
 import business.userRegister;
 import business.userRegisterImpl;
-import entity.User;
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -32,10 +32,12 @@ public class registerServlet extends HttpServlet {
 
 //        userRegister.register(firstName,lastName,email,password,confirmPassword);
 
-        User user = new User(firstName, lastName,email,password,confirmPassword);
+        rUser ruser = new rUser(firstName, lastName,email,password,confirmPassword);
+
+
         userRegister userRegister = new userRegisterImpl();
 
-        userRegister.register(user);
+        userRegister.register(ruser);
 
     }
 }

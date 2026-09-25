@@ -1,6 +1,6 @@
 package data;
 
-import entity.User;
+import business.bUser;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,19 +11,26 @@ import java.sql.SQLException;
 public class userDAOImp implements userDAO {
 
     @Override
-    public void saveUser(User user){
+    public void saveUser(bUser buser){
+
+
+        dUser duser = new dUser(
+                buser.getFirstName(),
+                buser.getLastName(),
+                buser.getEmail(),
+                buser.getPassword());
 
         String sql =  "INSERT INTO user "+
                       "(first_name, last_name, email, password) "+
                       " VALUES(?, ?, ?, ?) ";
 
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql);){
+             PreparedStatement statement = connection.prepareStatement(sql)){
 
-            statement.setString(1,user.getFirstName());
-            statement.setString(2,user.getLastName());
-            statement.setString(3,user.getEmail());
-            statement.setString(4,user.getPassword());
+            statement.setString(1,duser.getFirstName());
+            statement.setString(2,duser.getLastName());
+            statement.setString(3,duser.getEmail());
+            statement.setString(4,duser.getPassword());
             int rows = statement.executeUpdate();
 
             if(rows > 0){
