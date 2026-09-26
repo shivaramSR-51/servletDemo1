@@ -24,7 +24,7 @@ public class userRegisterImpl implements userRegister
         data data = new data();
         data.setFirstName(buser.getFirstName());
         data.setLastName(buser.getLastName());
-        data.setEmail(buser.getPassword());
+        data.setEmail(buser.getEmail());
         data.setPassword(buser.getPassword());
 
         userDAO userDao = new userDAOImp();

@@ -31,6 +31,6 @@ public class dUser {
         return password;
     }
     public void setPassword(String password){
-        this.password = this.password;
+        this.password = password;
     }
 }
