@@ -1,34 +1,32 @@
 package business;
-import common.data;
+
 import data.userDAO;
 import data.userDAOImp;
-import common.registerRequest;
+import data.dUser;
+
 public class userRegisterImpl implements userRegister
 {
     @Override
-    public void register(registerRequest req){
+    public void register(bUser buser){
 
 
 
-        if(!req.getPassword().equals(req.getConfirmPassword())){
+        if(!buser.getPassword().equals(buser.getConfirmPassword())){
             System.out.println("Password doesn't match");
             return;
         }
 
-        bUser buser = new bUser();
-        buser.setFirstName(req.getFirstName());
-        buser.setLastName(req.getLastName());
-        buser.setEmail(req.getEmail());
-        buser.setPassword(req.getPassword());
+        dUser duser = new dUser();
 
-        data data = new data();
-        data.setFirstName(buser.getFirstName());
-        data.setLastName(buser.getLastName());
-        data.setEmail(buser.getEmail());
-        data.setPassword(buser.getPassword());
+        duser.setFirstName(buser.getFirstName());
+        duser.setLastName(buser.getLastName());
+        duser.setEmail(buser.getEmail());
+        duser.setPassword(buser.getPassword());
+
+
 
         userDAO userDao = new userDAOImp();
-        userDao.saveUser(data);
+        userDao.saveUser(duser);
     }
 
 }

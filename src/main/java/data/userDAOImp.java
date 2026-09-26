@@ -1,8 +1,5 @@
 package data;
 
-import business.bUser;
-import common.data;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,16 +9,7 @@ import java.sql.SQLException;
 public class userDAOImp implements userDAO {
 
     @Override
-    public void saveUser(data data){
-
-
-        dUser duser = new dUser();
-        duser.setFirstName(data.getFirstName());
-        duser.setLastName(data.getLastName());
-        duser.setEmail(data.getEmail());
-        duser.setPassword(data.getPassword());
-
-
+    public void saveUser(dUser duser){
 
 
         String sql =  "INSERT INTO user "+
