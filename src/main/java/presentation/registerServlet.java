@@ -20,24 +20,15 @@ public class registerServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
   throws ServletException , IOException{
-        String firstName = request.getParameter("firstName");
 
-        String lastName = request.getParameter("lastName");
-
-        String email =request.getParameter("email");
-
-        String password = request.getParameter("password");
-
-        String confirmPassword = request.getParameter("confirmPassword");
-
-
+        //
           rUser ruser = new rUser();
 
-         ruser.setFirstName(firstName);
-         ruser.setLastName(lastName);
-         ruser.setEmail(email);
-         ruser.setPassword(password);
-         ruser.setConfirmPassword(confirmPassword);
+         ruser.setFirstName( request.getParameter("firstName"));
+         ruser.setLastName(request.getParameter("lastName"));
+         ruser.setEmail(request.getParameter("email"));
+         ruser.setPassword(request.getParameter("password"));
+         ruser.setConfirmPassword(request.getParameter("confirmPassword"));
 //        userRegister.register(firstName,lastName,email,password,confirmPassword);
 
 

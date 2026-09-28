@@ -36,7 +36,9 @@ public class userDAOImp implements userDAO {
     }
 
     @Override
-    public boolean validateUser(dlUser dluser) {
+    public dlUser validateUser(dlUser dluser) {
+
+        dlUser result = null;
 
         String validate = "SELECT * FROM user WHERE email = ? AND password = ?";
 
@@ -49,15 +51,21 @@ public class userDAOImp implements userDAO {
             ResultSet rs = statement.executeQuery();
 
             if(rs.next()){
-                return true;
 
+                result = new dlUser();
+                result.setUserId(rs.getInt("userId"));
+                result.setFirstName(rs.getString("first_name"));
+                result.setLastName(rs.getString("last_name"));
+                result.setEmail(rs.getString("email"));
+
+                return result;
             }
-            return false;
 
+           return null;
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
 
 
