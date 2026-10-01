@@ -70,6 +70,14 @@ public class userDAOImp implements userDAO {
 
 
     }
+    @Override
+    public void addUserAddress(dAddress address){
 
+    }
+
+    @Override
+    public void addPhno(dPhno dphno) {
+
+    }
 
 }
