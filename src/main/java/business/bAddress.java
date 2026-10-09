@@ -7,6 +7,14 @@ public class bAddress {
     private String country;
     private String zipcode;
     private String street;
+    private int userId;
+
+    public int getUserId(){
+        return userId;
+    }
+    public void setUserId(int userId){
+        this.userId = userId;
+    }
 
     public String getCity() {
         return city;

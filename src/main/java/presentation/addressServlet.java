@@ -8,13 +8,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
-@WebServlet
+@WebServlet("/address")
 public class addressServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,HttpServletResponse response)
             throws ServletException,IOException{
+
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+
            addUser address = new addUser();
            address.setCountry(request.getParameter("country"));
            address.setCity(request.getParameter("city"));
@@ -22,6 +29,7 @@ public class addressServlet extends HttpServlet {
            address.setZipcode((request.getParameter("zipcode")));
 
            bAddress baddress = new bAddress();
+           baddress.setUserId(userId);
            baddress.setCity(address.getCity());
            baddress.setCountry(address.getCountry());
            baddress.setStreet(address.getStreet());

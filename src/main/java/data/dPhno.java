@@ -3,6 +3,7 @@ package data;
 public class dPhno {
     private String phnoCode;
     private String phno;
+    private int userId;
 
     public String getPhno() {
         return phno;
@@ -18,5 +19,11 @@ public class dPhno {
 
     public void setPhnoCode(String phnoCode) {
         this.phnoCode = phnoCode;
+    }
+    public int getUserId(){
+        return userId;
+    }
+    public void setUserId(int userId){
+        this.userId = userId;
     }
 }

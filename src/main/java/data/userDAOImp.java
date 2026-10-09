@@ -73,10 +73,54 @@ public class userDAOImp implements userDAO {
     @Override
     public void addUserAddress(dAddress address){
 
+       String sql = "INSERT INTO address " +
+                "(user_id,street,city,country,zipcode) " +
+                " VALUES(?, ?, ?, ?, ?) ";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+             statement.setInt(1, address.getUserId());
+             statement.setString(2, address.getStreet());
+             statement.setString(3, address.getCity());
+             statement.setString(4, address.getCountry());
+             statement.setString(5,address.getZipcode());
+            int rows = statement.executeUpdate();
+
+           if (rows > 0) {
+                System.out.println("address Added successfully");
+            }
+       } catch (SQLException | IOException e) {
+            e.printStackTrace();
+       }
+
+
     }
 
     @Override
     public void addPhno(dPhno dphno) {
+
+        String sql = "INSERT INTO phno " +
+                "(user_id,country_code,phone_no, type) " +
+               " VALUES(?, ?, ?, ?) ";
+
+        try(Connection connection = DBConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, dphno.getUserId());
+            statement.setString(2, dphno.getPhnoCode());
+            statement.setString(3, dphno.getPhno());
+            statement.setString(4, "Personal");
+
+            int rows = statement.executeUpdate();
+
+            if (rows > 0) {
+                System.out.println("contact Added successfully");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
     }
 

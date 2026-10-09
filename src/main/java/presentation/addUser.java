@@ -5,6 +5,15 @@ public class addUser {
     private String city;
     private String zipcode;
     private String country;
+    private int userId;
+
+    public int getUserId(){
+        return userId;
+    }
+    public void setUserId(int userId){
+        this.userId = userId;
+    }
+
 
     public String getCountry() {
         return country;
