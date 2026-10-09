@@ -5,6 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.list;
 
 
 public class userDAOImp implements userDAO {
@@ -124,4 +128,62 @@ public class userDAOImp implements userDAO {
 
     }
 
+    @Override
+
+    public List<dAddress> getAddresses(int userId) {
+        List<dAddress> list = new ArrayList<>();
+
+        String sql = "SELECT street, city, country, zipcode FROM address WHERE user_id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, userId);
+            try (ResultSet rs = statement.executeQuery()) {
+
+                while (rs.next()) {
+                    dAddress addres = new dAddress();
+                    addres.setUserId(userId);
+                    addres.setStreet(rs.getString("street"));
+                    addres.setCity(rs.getString("city"));
+                    addres.setCountry(rs.getString("country"));
+                    addres.setZipcode(rs.getString("zipcode"));
+                    list.add(addres);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<dPhno> getPhno(int userId){
+
+        List<dPhno> list  =  new ArrayList<>();
+        String sql = "SELECT country_code, phone_no, type From phno WHERE user_id = ?";
+
+        try(Connection connection = DBConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setInt(1, userId);
+            try (ResultSet rs = statement.executeQuery()) {
+
+                while (rs.next()) {
+                    dPhno phno = new dPhno();
+                    phno.setUserId(userId);
+                    phno.setPhnoCode(rs.getString("country_code"));
+                    phno.setPhno(rs.getString("phone_no"));
+
+                    list.add(phno);
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
+
+

@@ -39,6 +39,10 @@ public class addressServlet extends HttpServlet {
 
            buaddress.addAddress(baddress);
 
+        response.sendRedirect("home");
+
+
+
 
     }
 }
