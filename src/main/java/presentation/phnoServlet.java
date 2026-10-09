@@ -35,6 +35,8 @@ public class phnoServlet extends HttpServlet{
            userPhno userPhno = new userPhnoImp();
            userPhno.addPhno(bphno);
 
+        response.sendRedirect("home");
+
     }
 
 

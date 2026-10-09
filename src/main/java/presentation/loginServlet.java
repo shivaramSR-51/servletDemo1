@@ -42,7 +42,7 @@ public class loginServlet extends HttpServlet {
             session.setAttribute("userId",loggedin.getUserId());
 
 
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("home");
             System.out.println("Login Successful");
 
 

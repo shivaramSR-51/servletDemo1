@@ -1,4 +1,6 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page isELIgnored="false" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,32 +13,50 @@
 
     <h1>Welcome to Home Page</h1>
 
+    <h2>Welcome <c:out value="${sessionScope.firstName}"/> <c:out value="${sessionScope.lastName}"/></h2>
+
+    <p><strong>User ID:</strong> <c:out value="${sessionScope.userId}"/></p>
+
+    <p><strong>Email:</strong> <c:out value="${sessionScope.email}"/></p>
+
     <div class="container">
 
         <div class="user-card">
 
-            <h2>
-                Welcome ${sessionScope.firstName}${sessionScope.lastName}
-            </h2>
+           <h3>Phone Numbers</h3>
+           <c:choose>
+               <c:when test="${empty phones}">
+                   <p>No phone numbers added yet.</p>
+               </c:when>
+               <c:otherwise>
+                   <ul>
+                       <c:forEach var="p" items="${phones}">
+                           <li>+<c:out value="${p.phnoCode}"/> <c:out value="${p.phno}"/></li>
+                       </c:forEach>
+                   </ul>
+               </c:otherwise>
+           </c:choose>
+           <button onClick=openPhonePopup()>Add Phno</button>
 
-            <p>
-                <strong>User ID:</strong>
-                ${sessionScope.userId}
-            </p>
-
-            <p>
-                <strong>Email:</strong>
-                ${sessionScope.email}
-            </p>
-
-            <button class="phone-btn" onclick="openPhonePopup()">
-                Add Phone
-            </button>
-
-            <button class="address-btn" onclick="openAddressPopup()">
-                Add Address
-            </button>
-
+           <h3>Addresses</h3>
+           <c:choose>
+               <c:when test="${empty addresses}">
+                   <p>No addresses added yet.</p>
+               </c:when>
+               <c:otherwise>
+                   <ul>
+                       <c:forEach var="a" items="${addresses}">
+                           <li>
+                               <c:out value="${a.street}"/>,
+                               <c:out value="${a.city}"/>,
+                               <c:out value="${a.country}"/> -
+                               <c:out value="${a.zipcode}"/>
+                           </li>
+                       </c:forEach>
+                   </ul>
+               </c:otherwise>
+           </c:choose>
+           <button onClick=openAddressPopup()>Add Phno</button>
         </div>
 
     </div>
@@ -45,7 +65,7 @@
 
      <!-- PHONE POPUP -->
 
-        <div id="phonePopup" class="popup">
+        <div id="phonePopup" class="popup" style="display:none;">
 
             <div class="popup-content">
 
@@ -78,7 +98,7 @@
         </div>
          <!-- ADDRESS POPUP -->
 
-            <div id="addressPopup" class="popup">
+            <div id="addressPopup" class="popup" style="display:none;">
 
                 <div class="popup-content">
 
